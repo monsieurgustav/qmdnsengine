@@ -183,7 +183,7 @@ void ProviderPrivate::onMessageReceived(const Message &message)
         if (sendTxt) {
             reply.addRecord(txtRecord);
         }
-        server->sendMessage(reply);
+        server->sendMessageToAll(reply);
     }
 }
 
