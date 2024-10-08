@@ -141,6 +141,11 @@ Server::Server(QObject *parent)
 
 void Server::sendMessage(const Message &message)
 {
+    if (message.address().isMulticast()) {
+        sendMessageToAll(message);
+        return;
+    }
+
     QByteArray packet;
     toPacket(message, packet);
     if (message.address().protocol() == QAbstractSocket::IPv4Protocol) {
